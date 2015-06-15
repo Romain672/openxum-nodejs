@@ -1,7 +1,9 @@
 extends ../../layouts/default
 
+
 block head
   title Sign Up
+  script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js', type='text/javascript')
 
 block neck
   link(rel='stylesheet', href='/views/signup/index.min.css?#{cacheBreaker}')
@@ -23,7 +25,8 @@ block body
             div.alert.alert-info.alert-dismissable
               button.close(type='button', data-dismiss='alert') &times;
               |#{oauthMessage}&nbsp;
-              b
+              b<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+
                 a(href='/login/') Login Here
         div.btn-group.btn-group-justified
           if oauthTwitter
@@ -68,11 +71,64 @@ block body
         label Create a Password:
         input.form-control(type='password', name='password', value!='<%= password %>')
         span.help-block <%- errfor.password %>
+
+
       div.form-group(class!='<%- errfor.captcha ? "has-error" : "" %>')
+        label Copy this message:
+        br
         img(src='/captcha.jpg')
         br
         br
-        input.form-control(type='text', name='captcha', value!='<%= captcha %>')
+
+        button.form-control(type='text', name='captcha', value!='<%= captcha %>')
+        br
+        br
+
+
+        a(href='#', onclick='refresh(); return false;')
+            img(src='/captcha.jpg', border='0', title="le truc dont on ne sait pas ce que ça fait")
+
+
+
+        //input(type='button', onclick='reload()',class="btn btn-primary btn-md", value="Recharger l'image")
+        input(type='button', onclick='reload()', class="btn btn-primary btn-md", href='?variable', value="C'est ici :3")
+
         span.help-block <%- errfor.captcha %>
-      div.form-group
+
+         //
+         bonjour
+         $.getScript('/javascripts/openxum/reload.js', function ()
+         //callback();
+         //
+
+
+       div.form-group
         button.btn.btn-primary.btn-signup(type='button') Create My Account
+        br
+        a(href='?variable') Le bouton magique qui marche
+
+
+
+
+
+
+//form(name='inscription', method='post', action='saisie.php')
+//    | Entrez votre pseudo :
+//      input(type='text', name='pseudo')
+//      |
+//      br
+//      |         Entrez votre ville :
+//      input(type='text', name='ville')
+//      br
+//      |
+//      input(type='submit', name='valider', value='OK')
+
+
+
+//    script(language='javascript').
+//      function reload()
+//      {
+//      var temps=new Date();
+//      document.getElementById('captcha').src = 'captcha.php?'+temps.getTime();
+//      }
+//

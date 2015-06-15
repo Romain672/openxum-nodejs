@@ -175,9 +175,9 @@ Pentago.Engine = function (t, c) {
                 a.n = 1;
             }
         } else {
-            a.found = a.n >= 5;
             a.n = 0;
         }
+        a.found = a.n >= 5;
         return a;
     };
 
